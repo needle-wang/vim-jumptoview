@@ -1,7 +1,7 @@
 
 *Jump to a view's define from url map.*   
-*Only work with str style of view at a line,*  
-*Supports django and web.py's url.*  
+*Only work with view of str type at a line,*  
+*Support django and web.py's url.*  
 
 Based on ViMango, but totally different code in the end.  
 So maybe say inspired by ViMango.  
@@ -34,4 +34,4 @@ the source code is short, see it for more detail.
 Combining with ycm, would be more convenient!
 
 Bugs:
-  * can't handle the case that re of one line contained `',` or `",`. 
+  * can't handle the case that re at one line contains `',` or `",`. 
