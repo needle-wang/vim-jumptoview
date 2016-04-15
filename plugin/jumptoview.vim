@@ -28,10 +28,9 @@ endif
 python << EOF
 
 import vim
-
 from jumptoview import get_view_from_url
 
-def main():
+def gotoview():
     line = vim.current.line
     settings = {}
     settings['buffername'] = vim.current.buffer.name
@@ -43,6 +42,6 @@ def main():
 
 EOF
 
-autocmd FileType python nnoremap <silent> gO :python main()<CR>
+autocmd FileType python nnoremap <silent> gO :python gotoview()<CR>
 
 let &cpo = s:save_cpo
