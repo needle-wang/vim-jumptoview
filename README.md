@@ -12,10 +12,11 @@ Install:
     a vim package manager like vundle can do it well.
 
 * Put jumptoview.py in $PYTHONPATH  
-    e.g. sudo ln -sf ~/.vim/bundle/vim-jumptoview/plugin/jumptoview.py /usr/local/lib/python2.7/dist-packages/jumptoview.py
+    e.g.  
+    `sudo ln -sf ~/.vim/bundle/vim-jumptoview/plugin/jumptoview.py /usr/local/lib/python2.7/dist-packages/jumptoview.py`
 
 Usage:  
-Type `gO` at a view str line in urls.py:
+* Type `gO` at a view str line in urls.py:
 
   * `r'^url/$', 'app.views.func', ...`  
       can jump to `func` in app/views.py
@@ -33,5 +34,4 @@ the source code is short, see it for more detail.
 Combining with ycm, would be more convenient!
 
 Bugs:
-  * if re contained `',` or `",`, it can't locate. 
-
+  * can't handle the case that re of one line contained `',` or `",`. 
