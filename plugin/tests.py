@@ -27,18 +27,18 @@ class JumptoviewTestCase(unittest.TestCase):
   def test_get_func(self):
     self.settings['prefix'] = "dj_proj"
     with mock.patch('os.path.exists', new = self.filepath_mock):
-      self.line = "url(r'^$', 'views.first_page'),"
+      self.line = "url(r'^\'$', 'views.first_page'),"
       print get_view_from_url(self.line, self.settings)
 
   def test_get_app_urls(self):
     self.settings['prefix'] = "blog"
     with mock.patch('os.path.exists', new = self.filepath_mock):
-      self.line = "url(r'^blog/', include('urls')),"
+      self.line = "url(r'^blog/\'', include('urls')),"
       print get_view_from_url(self.line, self.settings)
 
   def test_get_direct_template(self):
     with mock.patch('os.path.exists', new = self.filepath_mock):
-      self.line = """url(r'^$', direct_to_template, {"template": "homepage.html"}, name="home"),"""
+      self.line = """url(r'^\'$', direct_to_template, {"template": "homepage.html"}, name="home"),"""
       print get_view_from_url(self.line, self.settings)
 
 

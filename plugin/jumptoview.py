@@ -16,7 +16,7 @@ def get_view_from_url(line, settings):
     if not cur_dir or cur_dir is '/':
       raise Exception('%s not found.' % p.basename(file_to_grep))
     return build_file(file_to_grep, p.dirname(cur_dir))
-  
+
   def get_vim_cmd(func_name, file_to_grep):
     return settings['grep'] + " /\(def\|class\) \+" + func_name + "/g " + build_file(file_to_grep) + ' | normal jzz'
 
@@ -29,12 +29,16 @@ def get_view_from_url(line, settings):
         return "\""
         break
 
+  def prune_re(line, quote_id):
+    re_tmp = r".*?%s.*?[^\\]%s *".replace("%s",quote_id)
+    return re.sub(re_tmp, '', line, 1)
+
   vim_cmd = 'echo "sorry, i tried~"'
   quote_id = find_quote(line)
   if not quote_id:   #if cursor is not at right line.
       return 'echo'
-  #prune re str for some special char, but ', or ", in re would still be trouble
-  line = line[line.index(quote_id, line.index(quote_id)+1):]
+
+  line =  prune_re(line, quote_id)
   #根据逗号, 找到在中间的view_str
   view_str_with_space = line.split(',')[1]
   if view_str_with_space.strip() == 'direct_to_template':

@@ -32,6 +32,3 @@ If you want to set variable or modify sth.
 the source code is short, see it for more detail.  
 
 Combining with ycm, would be more convenient!
-
-Bugs:
-  * can't handle the case that re at one line contains `',` or `",`. 
