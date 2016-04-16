@@ -29,9 +29,9 @@ def get_view_from_url(line, settings):
         return "\""
         break
 
-  def prune_re(line, quote_id):
+  def prune_re(oneline, quote_id):
     re_tmp = r".*?%s.*?[^\\]%s *".replace("%s",quote_id)
-    return re.sub(re_tmp, '', line, 1)
+    return re.sub(re_tmp, '', oneline, 1)
 
   vim_cmd = 'echo "sorry, i tried~"'
   quote_id = find_quote(line)
