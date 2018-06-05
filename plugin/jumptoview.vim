@@ -25,7 +25,7 @@ if !exists('g:jumptoview_open_cmd')
     let g:jumptoview_open_cmd = 'tabnew'
 endif
 
-python << EOF
+python3 << EOF
 
 import vim
 from jumptoview import get_view_from_url
