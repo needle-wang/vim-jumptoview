@@ -42,6 +42,6 @@ def gotoview():
 
 EOF
 
-autocmd FileType python nnoremap <silent> gO :python gotoview()<CR>
+autocmd FileType python nnoremap <silent> gO :py3 gotoview()<CR>
 
 let &cpo = s:save_cpo
