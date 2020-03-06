@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # 2016年 04月 15日 星期五 16:23:21 CST
@@ -13,7 +13,7 @@ def get_view_from_url(line, settings):
     if p.exists(tmp):
       return tmp
     # 先判断tmp, 再看cur_dir, p.dirname('simplefile.py') == ''
-    if not cur_dir or cur_dir is '/':
+    if not cur_dir or cur_dir == '/':
       raise Exception('%s not found.' % p.basename(file_to_grep))
     return build_file(file_to_grep, p.dirname(cur_dir))
 
@@ -23,10 +23,10 @@ def get_view_from_url(line, settings):
 
   def find_quote(oneline):
     for an_alpha in oneline:
-      if an_alpha is "'":
+      if an_alpha == "'":
         return "'"
         break
-      elif an_alpha is "\"":
+      elif an_alpha == "\"":
         return "\""
         break
 
