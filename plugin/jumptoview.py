@@ -6,6 +6,10 @@
 import os.path as p
 import re
 
+# TODO, use pathlib.
+SINGLE = "'"
+DOUBLE = '"'
+
 
 def get_view_from_url(line, settings):
   def build_file(file_to_grep, cur_dir=p.dirname(settings['buffername'])):
@@ -18,16 +22,16 @@ def get_view_from_url(line, settings):
     return build_file(file_to_grep, p.dirname(cur_dir))
 
   def get_vim_cmd(func_name, file_to_grep):
-    return settings['grep'] + " /\(def\|class\) \+" + func_name + "/g " + build_file(
+    return settings['grep'] + r" /\(def\|class\) \+" + func_name + "/g " + build_file(
       file_to_grep) + ' | normal jzz'
 
   def find_quote(oneline):
     for an_alpha in oneline:
-      if an_alpha == "'":
-        return "'"
+      if an_alpha == SINGLE:
+        return SINGLE
         break
-      elif an_alpha == "\"":
-        return "\""
+      elif an_alpha == DOUBLE:
+        return DOUBLE
         break
 
   def prune_re(oneline, quote_id):
@@ -43,7 +47,7 @@ def get_view_from_url(line, settings):
   # 根据逗号, 找到在中间的view_str
   view_str_with_space = line.split(',')[1]
   if view_str_with_space.strip() == 'direct_to_template':
-    template = re.sub('''('|"|}\)?$)''', '',
+    template = re.sub(r'''('|"|}\)?$)''', '',
                       line.split(',')[2].split(':')[1].strip())
     file_name = build_file(p.join(settings['templates'], template))
     vim_cmd = '%s %s' % (settings['open'], file_name)
